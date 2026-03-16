@@ -4,11 +4,11 @@ Connect-AzAccount -Identity | Out-Null
 # =========================
 # CONFIG (EDIT THESE)
 # =========================
-$SiteUrlHostAndPath = "yourtenant.sharepoint.com:/sites/yoursite"
-$LibraryName        = "Shared_Documents"
+$SiteUrlHostAndPath = "yourtenant.sharepoint.com:/sites/ExampleSite"     
+$LibraryName        = "Documents"                                    
 $FolderPath         = "ExamplePath/Yourpath"
 $KeepYears          = 2
-$DryRun             = $false            # set to $true to simulate
+$DryRun             = $true            # set to $true to simulate
 $PageSize           = 200
 
 # File types to delete (leave empty @() to target ALL file types)
