@@ -34,17 +34,17 @@ Built for scenarios where you need to reclaim storage space in SharePoint sites 
 3. Recursively walks the folder tree using /children endpoint
 4. For each file:
   - Checks extension (if filtered)
-  - Checks lastModifiedDateTime against cutoff
-  - Deletes via DELETE /drives/{driveId}/items/{itemId} if qualified
+  - Checks lastModifiedDateTime against cutoff period
+  - Deletes via DELETE /drives/{driveId}/items/{itemId}
 
 5. Reports locked files, skips, and totals
 
 ## Limitations & Warnings
 
 - No version history cleanup — only deletes current files (not old versions)
-- Recycle bin — deleted items go to the site's recycle bin (recoverable for ~93 days)
+- Recycle bin — deleted items go to the site's recycle bin (recoverable for ~93 days based on SharePoint defaults)
 - Retention policies / legal holds — may prevent deletion (script skips locked items)
-- Throttling — large libraries can take hours/days; the script retries on 429 but be patient
+- Throttling — large libraries will take hours/days; the script will continue to retry until finished or cancelled but patient 😌
 - No restore — use DryRun religiously before real runs
 - Not multi-threaded (to avoid aggressive throttling)
 
