@@ -27,7 +27,7 @@ Built for scenarios where you need to reclaim storage space in SharePoint sites 
   - **Delegated** permissions (interactive): `Files.ReadWrite.All` or equivalent
 - Run in an environment with access to Azure AD (e.g., Azure Runbook, local with login, VM with managed identity)
 
-## How It Works (High-Level)
+## How It Works
 
 1. Authenticates and gets an access token for Graph API
 2. Resolves the site → drive (library) → folder
@@ -35,23 +35,22 @@ Built for scenarios where you need to reclaim storage space in SharePoint sites 
 4. For each file:
   - Checks extension (if filtered)
   - Checks lastModifiedDateTime against cutoff period
-  - Deletes via DELETE /drives/{driveId}/items/{itemId}
+ 
 
 5. Reports locked files, skips, and totals
 
-## Limitations & Warnings
+## Warning
 
 - No version history cleanup — only deletes current files (not old versions)
 - Recycle bin — deleted items go to the site's recycle bin (recoverable for ~93 days based on SharePoint defaults)
 - Retention policies / legal holds — may prevent deletion (script skips locked items)
-- Throttling — large libraries will take hours/days; the script will continue to retry until finished or cancelled but patient 😌
+- Throttling — large libraries will take hours/days; the script will continue to retry until finished or cancelled so be patient 😌
 - No restore — use DryRun religiously before real runs
-- Not multi-threaded (to avoid aggressive throttling)
 
 ## Installation / Setup
 
 1. Clone or download this repository
-2. Open `Cleanup-OldSharePointFiles.ps1` (or whatever you name the script)
+2. Open `Cleanup-OldSharePointFiles.ps1`
 3. Edit the **CONFIG** section at the top:
 
 ```powershell
