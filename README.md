@@ -16,7 +16,7 @@ Built for scenarios where you need to reclaim storage space in SharePoint sites 
 - Retries on transient Graph errors (429 throttling, 5xx)
 - Skips locked files (423 Locked) and reports them
 - Dry-run mode to preview deletions without making changes
-- Clear summary statistics at the end
+- Clear summary and statistics at the end
 
 ## Prerequisites
 
